@@ -7,7 +7,7 @@ ls /sys/firmware/efi/efivars
 fdisk -l
 
 ## Split partition
-parted /dev/sda mklabel gpt mkpart primary ext4 1MiB 100%
+parted /dev/sda mklabel msdos mkpart primary ext4 1MiB 100%
 fdisk -l
 
 ## Filesystem
