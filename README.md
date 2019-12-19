@@ -55,7 +55,10 @@ sed -ie '6s/^/Server=http:\/\/ftp.tsukuba.wide.ad.jp\/Linux\/archlinux\/$repo\/o
 
 ## pacstrap
 ```
+# basic
 pacstrap /mnt base linux linux-firmware
+
+## troubleshoot
 pacstrap /mnt \
   vim man-db man-pages texinfo \
   dhcpcd \
@@ -64,6 +67,9 @@ pacstrap /mnt \
   openssh \
   parted \
   grub
+
+## for ansible
+pacstrap /mnt git ansible sudo
 ```
 
 ## fstab
@@ -118,4 +124,28 @@ passwd
 ```
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+## prepare anible
+```
+# create ansible user
+useradd -m ansible
+passwd ansible
+
+# setup sshd
+touch /home/ansible/.authorized_keys
+echo 'your public key' >> /home/ansible/.authorized_keys
+
+# add ansible to sudoers
+EDITOR=/usr/bin/vim visudo # grant some privilege
+
+# download ansible
+cd /home/ansible
+git clone https://github.com/forestsource/dev_env_ansible.git
+```
+
+## reboot
+```
+exit # exit chroot.
+reboot
 ```
