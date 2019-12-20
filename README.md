@@ -149,3 +149,9 @@ git clone https://github.com/forestsource/dev_env_ansible.git
 exit # exit chroot.
 reboot
 ```
+
+# Ansible 
+```
+EDITOR=vim ansible-vault create secret.yml
+ansible-playbook -i local site.yml -u ansible -k --ask-vault-pass
+```
