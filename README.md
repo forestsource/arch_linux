@@ -69,7 +69,7 @@ pacstrap /mnt \
   grub
 
 ## for ansible
-pacstrap /mnt git ansible sudo
+pacstrap /mnt git ansible sshpass sudo 
 ```
 
 ## fstab
